@@ -142,3 +142,22 @@ cat $1 | grep -o '[CG]' | wc -l
 
 totalseq=$(cat $1 | wc -l)
 
+#The directories in PATH can be hard to distinguish when printed out as one line with colon delimiters. You want a simple way to display them, one to a line.
+
+echo $PATH #prints a long sequence of directories
+echo "$PATH" | tr ':' '\n'
+
+#the above command "translates" the colon to make the path print in next line wherever needed
+
+${#varname} #returns the length of the value of the variable as a character string
+
+#Refer to pages 295-296 for extended pattern matching
+#298 for COMMAND SUBSTITUTION
+
+#ADVANCED EXAMPLES: pushd and popd
+
+#STACK: Last in-first out concept
+#putting onto a stack is known as pushing, and taking something off is known as popping
+#pushd is like clicking a link and saving your current page.
+#popd is like hitting "back", returning to the last page.
+
