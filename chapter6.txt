@@ -1,0 +1,80 @@
+#CHAPTER 6
+#2nd June, 2025
+
+#shift command
+#If you use an option while running arguments,
+#the option gets a positional variable assigned to it
+#Like,
+teatime -o alice hatter
+   $0   $1   $2    $3
+
+#The usage of options shifts around the positional variable, we can essentially reset it using shift
+So,
+if [ $1 = -o ]; then
+	shift
+	echo "$1"
+fi
+
+#!/bin/bash
+#try running bash shift.sh apple banana cherry
+echo "All arguments before shifting: $@"
+
+# Process each argument one by one using shift
+while [ $# -gt 0 ]; do
+    echo "Current argument: $1"
+    shift #first, its apple, then first argument gets shifted to banana, then to cherry
+    #but at the same time, shift also removes arguments
+done
+
+echo "All arguments after shifting: $@" #Now no more arguments, so this does not print anything
+
+
+#CODE FOR PROCESSING AND REMOVING OPTIONS
+while [ -n "$(echo $1 | grep '-')" ]; do
+	case $1 in
+		-a ) process option -a
+		;;
+		-b ) process option -b
+		;;
+		-c ) process option -c
+		;;
+		* ) echo 'usage: alice [-a] [-b] [-c] args...'
+			exit 1
+	esac
+	shift
+done
+normal processing of arguments...
+
+
+#GETOPTS
+###########################################################Refer later
+
+
+#TYPED VARIABLES
+#Use the declare command to declare certain options
+#As discussed before, -o turns the option on and +o turns it off
+
+#DECLARE OPTIONS
+-a #Treat variables as arrays
+-f #Use function names only
+-F #Display function names w/o definition
+-i #variables are treated as integers
+-r #makes the variables read-only
+-x #marks the variables for export via the environment
+
+#FOR EXAMPLE
+val1=12 val2=6
+result=val1*val2
+echo $result
+
+#Output: val1*val2
+
+declare -i val3=13 val4=4
+result2=val3*val4
+echo $result2
+
+#Output: 52
+
+#INTEGER AND ARITHMETIC VARIABLES
+
+#Integer variables are denoted as $(())
