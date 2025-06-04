@@ -1,0 +1,60 @@
+#CHAPTER 7
+#DATE: 3rd JUNE, 2025
+
+#INPUT/OUTPUT AND COMMAND-LINE PROCESSING
+
+#I/O Redirectors
+#Refer to 428-432
+
+#>> appends to the file instead of overwriting it
+#other than that, it works the same as >.
+
+#You can prevent the shell from overwriting a file with set -o noclobber
+#However, >| overrides noclobber
+#"Do it anyway, dammit!"- pg 433
+
+
+#here-document 
+#Used to input multiple lines in a code
+name="Alice"
+cat << END
+Hello, $name
+Today is $(date)
+END
+
+
+name="Person"
+cat << COOL
+Hello, $name
+Ready to work?
+COOL
+
+#FILE DESCRIPTORS
+
+#Low-level integer handle assigned by Unix to refer to an open file or stream.
+
+0: Standard input (stdin)
+1: Standard output (stdout)
+3: Standard error (stderr)
+
+command 2>filename   #send error messages to a separate file
+2>&1 #send standard error to same place as standard output
+
+#STRING I/O
+
+#ECHO
+-e #turns on interpretation of backslash escaped characters
+-E #Turns off """"
+-n #Omits the final newline
+
+#ECHO ESCAPE SEQUENCES
+#starts with a backslash
+#refer to page 444-446
+
+#printf
+#Does not automatically provide a newline.
+#printf "hello world"
+
+#SYNTAX
+printf format-string [arguments]
+printf "%s %s\n" hello world
