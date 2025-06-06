@@ -58,3 +58,31 @@ command 2>filename   #send error messages to a separate file
 #SYNTAX
 printf format-string [arguments]
 printf "%s %s\n" hello world
+
+#READ
+read var1 var2...
+#USED FOR GETTING USER INPUT
+
+#read -p "Enter your sequence:" name     #inputs sequence
+
+#read has total of eight options:
+-a: puts into array
+read -a people
+Input: alice duchess dodo
+echo ${people[2]}
+Output: dodo
+-d: delimiter
+echo "first:second:third" | while read -d ':' part; do
+  echo "Got: $part"
+done
+Output: prints first and second but not third
+-e: Allows you to use command line features while inputting some text
+-n: Here, you enter a certain fixed number of arguments and the code
+runs itself, no need to press Enter
+-p: Lets you print a statement on the same line as input
+read -p "Enter your sequence:" filename
+-r: Tells the prompt to not treat backslash as special characters
+-t: adds a timeout feature. only makes the user wait for a fixed amount of time for an input
+read -t 5 name  #gives the user only 5 seconds 
+-s: makes input silent; nothing is shown on the screen
+very useful for passwords
