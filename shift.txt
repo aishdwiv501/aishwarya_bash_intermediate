@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#try running bash shift.sh apple banana cherry
+
+echo "All arguments before shifting: $@"
+
+# Process each argument one by one using shift
+while [ $# -gt 0 ]; do
+    echo "Current argument: $1"
+    shift #first, its apple, then first argument gets shifted to banana, then to cherry
+    echo "$@"
+    #but at the same time, shift also removes arguments
+done
+
+echo "All arguments after shifting: $@" #Now no more arguments, so this does not print anything

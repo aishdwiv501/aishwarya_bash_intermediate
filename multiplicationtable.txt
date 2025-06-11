@@ -1,0 +1,10 @@
+for (( i=1; i<=12; i++))
+do
+	for (( j=1; j<=12; j++))
+	do
+		echo -ne "$((j*i))\t"    #-n: don't print in newline
+		#-e: Enable escape sequences like \t
+		#\t: inserts a table between sequences
+		done
+	echo
+done
