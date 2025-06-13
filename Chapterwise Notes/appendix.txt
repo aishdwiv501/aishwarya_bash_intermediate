@@ -1,0 +1,56 @@
+#APPENDIX
+#13th June, 2025
+
+*****************************APPENDIX A*******************************
+
+RELATED SHELLS
+
+*Bourne shell
+*IEEE POSIX 1003.2 shell Standard
+*Korn shell (ksh)
+*pdksh, widely used public domain Korn shell
+*zsh, a popular alternative to bash and the Korn shell
+
+SHELL CLONES AND UNIX-LINE PLATFORM
+
+CYGWIN
+DJGPP
+MKS Toolkit
+AT&T UWIN
+
+*****************************APPENDIX B*******************************
+
+Reference Lists
+715-720
+
+Old command-line options
+721-723
+
+Prompt String Customization
+724-728
+
+Built-in Commands and Reserved Words
+729-739
+
+Built-in Shell Variables
+740-761
+
+Test Operators
+762-767
+
+set Options
+768-773
+
+shopt Options
+774-783
+
+I/O Redirection
+784-788
+
+vi control mode commands
+798-804
+
+***************************APPENDIX-C************************************
+
+LOADABLE BUILTINS
+You can see a number of prewritten builtins in examples/loadables/
