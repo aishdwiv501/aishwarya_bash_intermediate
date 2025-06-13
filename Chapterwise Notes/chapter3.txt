@@ -1,0 +1,51 @@
+#CHAPTER 3
+#DATE: 27th May, 2025
+
+#SPECIAL FILES, ALIASES, OPTIONS, VARIABLES
+
+#.bash_profile : Read and commands are executed every time you log in.
+#.bashrc : When starting a subshell, it tries to read from .bashrc
+#.bash_logout : Read and executed every time a login shell exits
+
+#ALIASES
+#Prevents the need for writing an entire command every time;
+#instead allows the user to assign the command a "name"
+alias name=command #keep space removed between name and command
+
+alias search=grep
+$ search Fred phonelist
+
+#also helps assign a smaller name to huge locations like:
+alias cdvoy='cd sipp/demo/animation/voyager'
+
+#OPTIONS
+set -o #turns command on
+set +o #turns command off
+#refer to 198
+#shopt options- similar to set- refer to 199-202
+
+#SHELL VARIABLES
+#Customizable characteristics that cannot be expressed as an on/off variable.
+
+varname=value
+
+$ fred='Four spaces between these words.'
+echo $fred #Four spaces between these words.
+
+#BUILT IN VARIABLES
+#EDITING MODE VARIABLES 207-210
+#TIME STAMP FORMATS 213-218
+#MAIL VARIABLES 219
+#PROMPT STRING CUSTOMIZATION 223-227
+
+#COMMAND SEARCH PATH
+#use command PATH like echo $PATH
+
+#COMMAND HASHING
+#Everytime the shell looks for a command, it enters it into the hash table.
+hash -r #removes everything in table
+hash -d #remove specified name
+hash -p #allows you to enter a command into the hash table
+
+#MISC VARIABLES 235-236
+#TERMINAL TYPE: TERM

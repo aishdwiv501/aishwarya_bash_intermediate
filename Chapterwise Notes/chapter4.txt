@@ -1,0 +1,163 @@
+#CHAPTER 4
+#27th May, 2025
+
+#BASIC SHELL PROGRAMMING
+source scriptname #to open a script
+
+#files have three types of permissions (read, write and execute)
+
+#SHELL VARIABLES
+#Normal variables that usually store a string value but can also store a numerical value
+#Bash is very string forward, due to its influence from C shell and Bourne shell
+#However, bash improved on them by actually allowing explicit handling of numeric data (arithmetic)
+
+#Shell variables can be defined as follows:
+$ name="SHELL"    #ensure to not use spaces in between
+$ echo $name      #variables can be case-sensitive
+
+#variables are called using a $ before the variable name
+
+#ENVIRONMENT VARIABLES
+#Special kind
+#Shell variables only apply to present shell, EV are exported so they are available to other subprocesses
+#Like PATH, HOME, USER etc
+
+#POSITIONAL VARIABLES
+#When running and passing arguments, the values are stored in special variables
+
+$0 #Script
+$1 #First argument
+$2 #second argument and so on...
+
+$* #Passes all arguments as single string
+$@ #Passes all arguments separately in different lines
+$# #Passes the number of positional variables as output
+
+#IFS: Internal field separator
+#Takes care of how arguments are separated when $@ is passed
+#TAB, Space and NEWLINE by default
+
+#EXAMPLE
+#in a script named ALICE
+echo "ALICE: $@"      
+echo "$0: $1 $2 $3 $4"
+echo "$# arguments"
+
+#now if you type
+ALICE in wonderland
+#The variable ALICE now has two arguments: in and wonderland
+#So, now running the script ALICE gives us the output:
+
+# ALICE: in wonderland
+# ALICE: in wonderland
+# 2 arguments
+
+#THIS CAN BE DEFINED AS A FUNTION ALSO
+#IF YOU WANT TO DEFINE A FUNCTION, PUT THE FUNCTION CODE IN THE .bash_profile file
+function ALICE 
+{
+	echo "ALICE: $@"
+	echo "$0: $1 $2 $3 $4"
+	echo "$# arguments"
+}
+
+#Imagine writing a function called afunc in a script called ascript
+#acscript
+
+function afunc
+{
+	echo in function: $0 $1 $2
+	var1="in function"
+	echo var1: $var1
+}
+
+var1="outside function"
+echo var1: $var1
+echo $0: $1 $2
+afunc funcarg1 funcarg2
+echo var1: $var1
+echo $0: $1 $2
+
+
+#IF you then run this script by typing ascript arg1 arg2
+#OUTPUT
+
+var1: outside function
+ascript: arg1 arg2
+var1: in function       #FUNCTION RUNNING FROM THIS LINE
+var1: in function       #After the function runs, the value of var1 changes to be the same as function but
+ascript: arg1 arg2      #here it remains the same as outside function
+
+#For calling a variable, we can use curly brackets as well like
+echo ${var1}
+
+#STRING OPERATORS
+
+${varname:-word} #IF VARNAME IS NULL, RETURN WORD
+${varname:=word} #IF VARNAME IS NULL, SET IT TO WORD AND RETURN
+${varname:?message} #IF VARNAME IS NULL, PRINT "varname: message" and abort the command/script
+#Like
+${count:?"undefined!"} #prints "count: undefined!" and exits
+
+${varname:+word} #IF VARNAME EXISTS AND ISN'T NULL, return word
+${varname:offset:length} #PERFORMS SUBSTRING EXPANSION
+#returns substring of varname starting at offset to length characters
+
+$ count="frogfootman"
+${count:4} #footman
+${count:4:4} #foot
+
+#Let's take an example
+#albums.txt
+
+5 Band A
+10 Band B
+6 Band C
+12 Band D
+
+#If we were to write the following code: file.sh
+filename=$1
+howmany=${2:-10}
+
+sort -nr $filename | head -$howmany
+
+#AND TO run this code, you put in the argument 
+bash file.sh albums.txt 3   #First argument is the albums.txt
+#second argument is 3
+
+#So, -nr means to sort the file numerically in descending/reverse order
+#head means to pick only the number of lines as specified
+#the number of lines is 3 as specified in howmany because the second argument has 3
+
+#GREP COMMAND
+#grep command on its own filters out lines having the word of choice
+#EXAMPLE:
+
+cat $1 | grep -o 'C' | wc -l
+#cat reads the first argument i.e., the fasta file, and pipes it to the grep command.
+#the grep command with -o {only matching} filters out only the matching text
+
+cat $1 | grep -o '[CG]' | wc -l
+#This command gives the total number of G and C present in a sequence
+
+totalseq=$(cat $1 | wc -l)
+
+#The directories in PATH can be hard to distinguish when printed out as one line with colon delimiters. You want a simple way to display them, one to a line.
+
+echo $PATH #prints a long sequence of directories
+echo "$PATH" | tr ':' '\n'
+
+#the above command "translates" the colon to make the path print in next line wherever needed
+
+${#varname} #returns the length of the value of the variable as a character string
+
+#Refer to pages 295-296 for extended pattern matching
+#298 for COMMAND SUBSTITUTION
+
+#ADVANCED EXAMPLES: pushd and popd
+
+#STACK: Last in-first out concept
+#putting onto a stack is known as pushing, and taking something off is known as popping
+#pushd is like clicking a link and saving your current page.
+#popd is like hitting "back", returning to the last page.
+

@@ -1,0 +1,64 @@
+#CHAPTER 12
+#DATE: 13th June, 2025
+
+***********************bash FOR YOUR SYSTEM**********************
+
+http://www.gnu.org/software/bash/bash.html
+For downloading bash
+
+##################################################################
+
+What's in the Bash Archive
+
+MANIFEST
+A list of all files and directories
+
+COPYING
+GNU Copyleft for bash
+
+NEWS
+List of bug fixes and new features
+
+README
+Short intro and instructions for compiling bash
+
+doc
+Info related to bash in various formats
+
+examples
+Examples of startup files, scripts and functions
+
+##################################################################
+
+bash archive includes an examples directory.
+The startup-files, functions and scripts directories contain useful Bash code examples.
+
+Startup files
+Contains config files like .bashrc, .bash_aliases etc.
+bash_aliases has handy command shortcuts.
+
+Functions Directory
+Contains around 50 files with bash function defintions.
+Examples:
+basename: replacement for missing basename command.
+dirname: same idea for dirname.
+dirfuncs: directory navigation helpers.
+whatis, whence: Replicate useful features from Korn shell (ksh).
+kshenv: Makes bash behave more like Korn shell.
+
+Scripts directory
+Has over 20 example scripts, including:
+An adventure game interpreter.
+A C shell interpreter.
+Progress spinners and scrolling text.
+Precedence rule demos.
+Scripts that ask users for input in smart ways.
+
+##################################################################
+
+Reading the documentation is extremely helpful in scenarios where help is needed.
+
+Can email to bash-maintainers@gnu.org
+
+Bug reports should be sent to bug-bash@gnu.org
+

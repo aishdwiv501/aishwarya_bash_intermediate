@@ -1,0 +1,82 @@
+#CHAPTER 11
+#13th June, 2025
+
+
+***************************SHELL SCRIPTING**************************
+
+This chapter discusses good practices that should be followed to write maintainable shell scripts.
+
+#######################################################################
+
+COMMENTS
+
+Always comment your code 
+
+if ((i=1 ; i<=10 ; i++))    #a conditional statement
+
+Also should try to have a header or banner on top of the code
+
+#######################################################################
+
+VARIABLES AND CONSTANTS
+
+Name variables in a way such that you will remember them 6 months down the line.
+Don't make the names too long though.
+It clutters the script and affects efficiency.
+
+Constants should be declared in uppercase and should normally be declared as read-only.
+declare -r CAPITAL_OF_ENGLAND="London"
+
+Avoid using "magic numbers" throughout the code by using constants:
+
+if [[ $process_result == 68 ]]
+
+can be replaced with:
+
+declare -ir STAGE_3_FAILURE=68
+...
+if [[ $process_result == $STAGE_3_FAILURE ]]
+...
+
+######################################################################
+
+HOW TO DESCRIBE OPTIONS IN SCRIPT
+
+Your scripts should ideally have single letter options and long options too and it should provide
+two options: --help and --version
+
+—version
+This option should direct the program to print
+information about its name, version, origin, and legal
+status, all on standard output, and then exit
+successfully. Other options and arguments should be
+ignored once this is seen, and the program should not
+perform its normal function.
+
+—help
+This option should output brief documentation for
+how to invoke the program, on standard output, then
+exit successfully. Other options and arguments
+should be ignored once this is seen, and the program
+should not perform its normal function.
+
+Towards the end of the --help option, there should be a line saying where to report bugs.
+Like:
+#report bugs to email-address.
+Table of possible options 662-664
+
+######################################################################
+
+POTENTIAL PROBLEMS
+
+*Use functions, makes the code easier to read and debug.
+*Use hashbang.
+*Don't use reserved words for variables.
+*Be careful with spaces. Like, word = 5 will give an error.
+*Do not use the same names for variables and functions.
+*Be careful when using the test operator.
+	if [ "$var" = 42 ]
+	if [ "$var" -eq 42 ]
+The first is a string comparison, the second an integer comparison. We suggest using ((...)) for
+arithmetic comparisons in if statements.
+
