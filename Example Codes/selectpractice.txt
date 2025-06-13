@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Infinite loop to keep showing the menu until the user chooses to exit
+while true; do
+
+    # Display menu using `select`
+    echo "Please choose an option:"
+    select choice in "View current date" "Show current directory" "List files in the directory" "Exit"; do
+        
+        # Match user's selection
+        case $REPLY in
+            1)
+                # Option 1: Show current date and time
+                echo "Current date and time: $(date)"
+                break
+                ;;
+            2)
+                # Option 2: Show current working directory
+                echo "You are in: $(pwd)"
+                break
+                ;;
+            3)
+                # Option 3: List files in the current directory
+                echo "Files in directory:"
+                ls
+                break
+                ;;
+            4)
+                # Option 4: Exit the script
+                echo "Goodbye!"
+                exit 0
+                ;;
+            *)
+                # Invalid option: user entered a number not in the list
+                echo "Invalid option. Please try again."
+                ;;
+        esac
+    done
+
+    echo # Print a blank line for better readability between menu displays
+done

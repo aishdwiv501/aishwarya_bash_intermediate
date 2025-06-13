@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#FILE CHECKER USING CASE STATEMENT
+
+for file in "$@"; do
+    echo "Checking file: $file"
+    ext="${file##*.}" #extracts the extension of the file
+
+    case "$ext" in
+        jpg | jpeg | png | gif)
+            echo "This is an image file."
+            ;;
+        txt | mg | log)
+            echo "This is a text file."
+            ;;
+        pdf)
+            echo "This is a pdf document"
+            ;;
+        sh)
+            echo "This is a shell script"
+            ;;
+        *)
+            echo "Unknown"
+            ;;
+        esac
+done

@@ -1,0 +1,19 @@
+#!/bin/bash
+fruits=("cherry" "banana" "apple" "mango")
+
+#You can also do it individually like:
+#fruits[0]="cherry"   fruits[1]="banana"  etc.
+
+#echo ${fruits[0]} can do this for individual calling or...
+
+for fruit in ${fruits[@]}; 
+do
+    echo $fruit
+done
+
+#For number of elements in the array, use:
+
+echo ${#fruits[@]}   #gives 4
+unset fruits[3]  #removed mango
+echo ${fruits[@]}
+echo ${#fruits[@]}

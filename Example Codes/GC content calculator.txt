@@ -1,0 +1,27 @@
+#For cutting-pasting sequences directly: bash filename.sh
+
+#!/bin/bash
+read -p "Enter your sequence:" name     #inputs sequence
+total=$(echo "$name" | grep -o '[ATGCN]' | wc -l)    #Counts the entire sequence
+number=$(echo "$name" | grep -o '[CG]' | wc -l)      #Counts G and C
+echo "Total number of nucleotides: $total"
+echo "Number of G and C bases: $number"
+percen=$(echo "scale=2; ($number/$total) " | bc)     #calculates G and C fraction
+percent=$(echo "$percen*100" | bc)                   #calculates percentage of GC
+echo "GC content: $percent%"
+
+#For using FASTA files as input: bash filename.sh fastafile
+
+#!/bin/bash
+total=$(cat $1 | grep -o '[ATGCN]' | wc -l)    #Counts the entire sequence
+number=$(cat $1| grep -o '[CG]' | wc -l)      #Counts G and C
+echo "Total number of nucleotides: $total"
+echo "Number of G and C bases: $number"
+percen=$(echo "scale=2; ($number/$total) " | bc)     #calculates G and C fraction
+percent=$(echo "$percen*100" | bc)                   #calculates percentage of GC
+echo "GC content: $percent%"
+
+
+#This is a very basic code for a GC percent calculator
+#This code was made to learn the concepts of variable assignment, receiving input from user,
+#Arithmetic and float calculation
